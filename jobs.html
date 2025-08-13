@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Opportunities - Shine the World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/logo.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo.webp" alt="Shine the World Logo">
+                        <div class="logo-text">
+                            <h1>Shine the World</h1>
+                            <span class="tagline">Illuminating Truth</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list" id="navList">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="politics.html" class="nav-link">Politics</a></li>
+                        <li><a href="sports.html" class="nav-link">Sports</a></li>
+                        <li><a href="entertainment.html" class="nav-link">Entertainment</a></li>
+                        <li><a href="jobs.html" class="nav-link active">Jobs</a></li>
+                        <li><a href="subscribe.html" class="nav-link premium">Subscribe</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search news...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="search-icon-mobile" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
+                    <div class="profile-dropdown">
+                        <button class="profile-btn">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <div class="profile-menu">
+                            <a href="profile.html">Profile</a>
+                            <a href="login.html">Login</a>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                    
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Join Our Team</h1>
+                <p class="page-subtitle">Be part of the future of journalism</p>
+            </div>
+
+            <div class="jobs-content">
+                <div class="job-intro">
+                    <h2>Career Opportunities at Shine the World</h2>
+                    <p>We're looking for passionate journalists, content creators, and media professionals who believe in the power of truth and want to make a difference in the world of news.</p>
+                </div>
+
+                <div class="job-application-form">
+                    <h3>Apply for a Position</h3>
+                    <form id="jobForm" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="position">Position Applied For *</label>
+                                <select id="position" name="position" required>
+                                    <option value="">Select Position</option>
+                                    <option value="reporter">News Reporter</option>
+                                    <option value="editor">Content Editor</option>
+                                    <option value="photographer">Photographer</option>
+                                    <option value="videographer">Video Journalist</option>
+                                    <option value="anchor">News Anchor</option>
+                                    <option value="social-media">Social Media Manager</option>
+                                    <option value="intern">Internship</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">Experience (Years)</label>
+                            <select id="experience" name="experience">
+                                <option value="0">Fresher</option>
+                                <option value="1-2">1-2 Years</option>
+                                <option value="3-5">3-5 Years</option>
+                                <option value="5+">5+ Years</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="coverLetter">Cover Letter *</label>
+                            <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us why you want to join Shine the World and what makes you the perfect candidate..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="resume">Upload Resume *</label>
+                            <div class="file-upload">
+                                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                <label for="resume" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Choose file or drag and drop</span>
+                                    <small>PDF, DOC, DOCX (Max 5MB)</small>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="portfolio">Portfolio/Work Samples (Optional)</label>
+                            <input type="url" id="portfolio" name="portfolio" placeholder="https://your-portfolio.com">
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="terms.html" target="_blank">Terms and Conditions</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Application
+                        </button>
+                    </form>
+                </div>
+
+                <div class="job-benefits">
+                    <h3>Why Join Us?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Career Growth</h4>
+                            <p>Opportunities for professional development and career advancement</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Great Team</h4>
+                            <p>Work with experienced journalists and media professionals</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-laptop"></i>
+                            <h4>Modern Tools</h4>
+                            <p>Access to latest technology and journalism tools</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-heart"></i>
+                            <h4>Work-Life Balance</h4>
+                            <p>Flexible working hours and supportive work environment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>Shine the World</h3>
+                        <p>Your trusted source for reliable news and comprehensive coverage of global events.</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="politics.html">Politics</a></li>
+                            <li><a href="sports.html">Sports</a></li>
+                            <li><a href="entertainment.html">Entertainment</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="jobs.html">Career Opportunities</a></li>
+                            <li><a href="subscribe.html">Premium Subscription</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="disclaimer.html">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shine the World. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

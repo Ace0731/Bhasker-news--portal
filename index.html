@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shine the World - News Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/logo.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo.webp" alt="Shine the World Logo">
+                        <div class="logo-text">
+                            <h1>Shine the World</h1>
+                            <span class="tagline">Illuminating Truth</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list" id="navList">
+                        <li><a href="index.html" class="nav-link active">Home</a></li>
+                        <li><a href="politics.html" class="nav-link">Politics</a></li>
+                        <li><a href="sports.html" class="nav-link">Sports</a></li>
+                        <li><a href="entertainment.html" class="nav-link">Entertainment</a></li>
+                        <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                        <li><a href="subscribe.html" class="nav-link premium">Subscribe</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search news...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="search-icon-mobile" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
+                    <div class="profile-dropdown">
+                        <button class="profile-btn">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <div class="profile-menu">
+                            <a href="profile.html">Profile</a>
+                            <a href="login.html">Login</a>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                    
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breaking News -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="breaking-content">
+                <span class="breaking-label">Breaking</span>
+                <div class="ticker-wrapper">
+                    <div class="ticker">
+                        <span>Government announces new economic policy • </span>
+                        <span>India wins cricket match in spectacular fashion • </span>
+                        <span>Technology breakthrough in healthcare • </span>
+                        <span>Bollywood star announces new film • </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-slider">
+                    <div class="slide active">
+                        <img src="https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Main News">
+                        <div class="slide-content">
+                            <span class="slide-category">Politics</span>
+                            <h2 class="slide-title">Government Announces Major Economic Reform Package</h2>
+                            <p class="slide-summary">New economic policies aimed at boosting growth and creating employment opportunities across various sectors.</p>
+                            <a href="news-detail.html" class="read-more-btn">Read Full Story</a>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="https://images.pexels.com/photos/1661950/pexels-photo-1661950.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Sports News">
+                        <div class="slide-content">
+                            <span class="slide-category">Sports</span>
+                            <h2 class="slide-title">Indian Cricket Team Reaches World Cup Final</h2>
+                            <p class="slide-summary">Team India showcases exceptional performance to secure a spot in the finals with outstanding batting and bowling.</p>
+                            <a href="news-detail.html" class="read-more-btn">Read Full Story</a>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Entertainment">
+                        <div class="slide-content">
+                            <span class="slide-category">Entertainment</span>
+                            <h2 class="slide-title">Bollywood Film Breaks Box Office Records</h2>
+                            <p class="slide-summary">Latest blockbuster earns millions in opening weekend, setting new industry benchmarks.</p>
+                            <a href="news-detail.html" class="read-more-btn">Read Full Story</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="slider-btn prev-btn" onclick="changeSlide(-1)">‹</button>
+                <button class="slider-btn next-btn" onclick="changeSlide(1)">›</button>
+                
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </section>
+
+            <!-- News Grid -->
+            <section class="news-section">
+                <h2 class="section-title">Latest News</h2>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.pexels.com/photos/3039036/pexels-photo-3039036.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Environment">
+                            <span class="news-category">Environment</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Climate Change Initiative Launched</h3>
+                            <p class="news-summary">Government unveils comprehensive plan to combat climate change and promote sustainable development.</p>
+                            <div class="news-meta">
+                                <span class="author">Environment Desk</span>
+                                <span class="time">2 hours ago</span>
+                            </div>
+                            <a href="news-detail.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.pexels.com/photos/159844/cellular-education-classroom-159844.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Education">
+                            <span class="news-category">Education</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Digital Education Revolution Begins</h3>
+                            <p class="news-summary">New online learning platforms launched to enhance educational accessibility for students nationwide.</p>
+                            <div class="news-meta">
+                                <span class="author">Education Reporter</span>
+                                <span class="time">4 hours ago</span>
+                            </div>
+                            <a href="news-detail.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sports">
+                            <span class="news-category">Sports</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Olympic Preparations in Full Swing</h3>
+                            <p class="news-summary">Indian athletes intensify training for upcoming Olympic games with state-of-the-art facilities.</p>
+                            <div class="news-meta">
+                                <span class="author">Sports Desk</span>
+                                <span class="time">6 hours ago</span>
+                            </div>
+                            <a href="news-detail.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Health">
+                            <span class="news-category">Health</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">AI Revolution in Healthcare</h3>
+                            <p class="news-summary">Artificial intelligence technology enables faster disease detection and improved patient care.</p>
+                            <div class="news-meta">
+                                <span class="author">Health Reporter</span>
+                                <span class="time">8 hours ago</span>
+                            </div>
+                            <a href="news-detail.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.pexels.com/photos/414837/pexels-photo-414837.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Technology">
+                            <span class="news-category">Technology</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Electric Vehicle Adoption Surges</h3>
+                            <p class="news-summary">Growing demand for eco-friendly vehicles drives innovation in the automotive industry.</p>
+                            <div class="news-meta">
+                                <span class="author">Tech Reporter</span>
+                                <span class="time">10 hours ago</span>
+                            </div>
+                            <a href="news-detail.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Business">
+                            <span class="news-category">Business</span>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Stock Market Hits New Heights</h3>
+                            <p class="news-summary">Economic reforms boost investor confidence as markets reach record-breaking levels.</p>
+                            <div class="news-meta">
+                                <span class="author">Business Desk</span>
+                                <span class="time">12 hours ago</span>
+                            </div>
+                            <a href="news-detail.html" class="read-more-btn">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>Shine the World</h3>
+                        <p>Your trusted source for reliable news and comprehensive coverage of global events.</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="politics.html">Politics</a></li>
+                            <li><a href="sports.html">Sports</a></li>
+                            <li><a href="entertainment.html">Entertainment</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="jobs.html">Career Opportunities</a></li>
+                            <li><a href="subscribe.html">Premium Subscription</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="disclaimer.html">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shine the World. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <button class="close-search" onclick="toggleSearch()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="search-form">
+                <input type="text" placeholder="Search for news, topics, or keywords..." class="search-overlay-input">
+                <button class="search-overlay-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="trending-searches">
+                <h4>Trending Searches</h4>
+                <div class="trending-tags">
+                    <span class="tag">Economic Policy</span>
+                    <span class="tag">Cricket World Cup</span>
+                    <span class="tag">Climate Change</span>
+                    <span class="tag">Technology</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
