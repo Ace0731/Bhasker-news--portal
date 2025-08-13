@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संपर्क करें - भास्कर न्यूज़</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+       
+  <link rel="stylesheet" href="Frantend/revamp.css">
+
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <link href="img/logo.png" rel="icon">
+</head>
+<body>
+    <!-- Header -->
+  
+      <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+    <img src="img/logo.webp" alt="भास्कर न्यूज़ लोगो" style="height: 50px; margin-right: 10px;">
+    <!-- <h1 style="margin: 0; font-size: 24px; color: #000;">भास्कर न्यूज़</h1> -->
+  </a>
+                    <span class="tagline">सच की आवाज़</span>
+                </div>
+                
+               <nav class="nav" id="nav">
+          <ul class="nav-list" id="navList">
+            <li><a href="index.html" class="nav-link ">होम</a></li>
+            <li><a href="politics.html" class="nav-link ">राजनीति</a></li>
+            <li><a href="sports.html" class="nav-link">खेल</a></li>
+            <li><a href="cricket.html" class="nav-link">क्रिकेट</a></li>
+            <li><a href="entertainment.html" class="nav-link">मनोरंजन</a></li>
+           
+              <li> <a href="epaper.html" class="nav-link">ई-पेपर</a></li> 
+        <li>  <a href="videos.html" class="nav-link">वीडियो</a></li>
+
+         <li class="dropdown">
+              <a href="#" class="nav-link">More ▾</a>
+              <div class="dropdown-content">
+                <a href="#">टॉप न्यूज़ | Top News</a>
+                <a href="#">राज्य-शहर | Local</a>
+                <a href="#">भास्कर खास | Bhaskar Khaas</a>
+                <a href="#">क्रिकेट | Cricket</a>
+                <a href="#">DB ओरिजिनल | DB Original</a>
+                <a href="#">स्पोर्ट्स | Sports</a>
+                <a href="#">बॉलीवुड | Entertainment</a>
+                <a href="#">जॉब - एजुकेशन | Jobs & Education</a>
+                <a href="#">बिजनेस | Business</a>
+                <a href="#">लाइफस्टाइल | Lifestyle</a>
+                <a href="#">जीवन मंत्र | Jeevan Mantra</a>
+                <a href="#">वुमन | Women</a>
+                <a href="#">देश | National</a>
+                <a href="#">विदेश | International</a>
+                <a href="#">राशिफल | Rashifal</a>
+                <a href="#">टेक - ऑटो | Tech - Auto</a>
+                <a href="#">फेक न्यूज एक्सपोज़ | Fake News Expose</a>
+                <a href="#">ओपिनियन | Opinion</a>
+                <a href="#">मधुरिमा | Madhurima</a>
+                <a href="#">मैगजीन | Magazine</a>
+                <a href="#">लाइफ - साइंस | Happy Life</a>
+                <a href="#">यूटिलिटी | Utility</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+                
+                <div class="header-actions">
+                   <div class="search-box-wrapper">
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="खबर, टॉपिक, शहर या राज्य खोजें">
+      <button class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+        <!-- Mobile Search Icon -->
+        <button class="search-icon-mobile" onclick="openSearch()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+
+
+<div id="google_translate_element"></div>
+
+                    <div class="profile-dropdown">
+ <a href="#" class="profile-icon" title="My Profile">
+    <i class="bi bi-person-circle" style="font-size: 24px;"></i>
+  </a>
+  <ul class="profile-menu">
+    <li><a href="profile.html"> मेरा प्रोफाइल</a></li>
+    <li><a href="login.html"> लॉगिन</a></li>
+    <!-- <li><a href="#" onclick="toggleDarkMode()"> डार्क मोड</a></li> -->
+   <li><a href="faq.html">लॉग आउट करें</a></li>
+  </ul>
+</div>
+
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-bar">
+    <i class="fas fa-arrow-left close-btn" onclick="closeSearch()"></i>
+    <input type="text" placeholder="खबर, टॉपिक, शहर या राज्य खोजें">
+    <i class="fas fa-search search-icon ms-2"></i>
+  </div>
+
+  <div class="search-trending">
+    <h5>ट्रेंडिंग</h5>
+    <div class="tag">धनखड़ का इस्तीफा</div>
+    <div class="tag">मानसून सत्र</div>
+    <div class="tag">आपदा की बारिश</div>
+    <div class="tag">जज के घर कैश</div>
+  </div>
+</div>
+
+    <!-- Breaking News Ticker -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="breaking-news-content">
+                <span class="breaking-label">ब्रेकिंग न्यूज़</span>
+                <div class="ticker-wrapper">
+                    <div class="ticker">
+                        <span>सरकार ने नई आर्थिक नीति की घोषणा की • </span>
+                        <span>भारत ने क्रिकेट मैच में शानदार जीत दर्ज की • </span>
+                        <span>नई तकनीक से स्वास्थ्य सेवाओं में सुधार • </span>
+                        <span>बॉलीवुड स्टार की नई फिल्म की घोषणा • </span>
+                        <span>शिक्षा क्षेत्र में नए सुधार लागू • </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Page Header -->
+                <section class="page-header">
+                    <h1 class="page-title">संपर्क करें</h1>
+                    <p class="page-subtitle">हमसे जुड़ें और अपनी बात कहें</p>
+                </section>
+
+                <div class="main-content">
+                    <!-- Contact Form -->
+                    <section class="contact-section">
+                        <div class="contact-intro">
+                            <h2>हमसे संपर्क करें</h2>
+                            <p>
+                                आपके सुझाव, शिकायतें या कोई भी प्रश्न हमारे लिए महत्वपूर्ण हैं। कृपया नीचे दिए गए फॉर्म को भरें या सीधे हमसे संपर्क करें। हमारी टीम 24 घंटे के भीतर आपको जवाब देगी।
+                            </p>
+                        </div>
+
+                        <div class="contact-form-container">
+                            <form class="contact-form" id="contactForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">पूरा नाम *</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">ईमेल पता *</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="phone">फोन नंबर</label>
+                                        <input type="tel" id="phone" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">विषय *</label>
+                                        <select id="subject" name="subject" required>
+                                            <option value="">विषय चुनें</option>
+                                            <option value="news-tip">समाचार सुझाव</option>
+                                            <option value="complaint">शिकायत</option>
+                                            <option value="feedback">फीडबैक</option>
+                                            <option value="partnership">साझेदारी</option>
+                                            <option value="career">करियर</option>
+                                            <option value="other">अन्य</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">संदेश *</label>
+                                    <textarea id="message" name="message" rows="6" required placeholder="अपना संदेश यहाँ लिखें..."></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="newsletter" name="newsletter">
+                                        <span class="checkmark"></span>
+                                        मैं भास्कर न्यूज़ का न्यूज़लेटर प्राप्त करना चाहता/चाहती हूँ
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="submit-btn">संदेश भेजें</button>
+                            </form>
+                        </div>
+                    </section>
+
+                    <!-- Contact Information -->
+                    <section class="contact-info-section">
+                        <h2>संपर्क जानकारी</h2>
+                        <div class="contact-info-grid">
+                            <div class="contact-info-card">
+                                <div class="contact-icon">
+                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <h3>मुख्यालय</h3>
+                                <p>
+                                    123, प्रेस कॉम्प्लेक्स<br>
+                                    कनॉट प्लेस<br>
+                                    नई दिल्ली - 110001<br>
+                                    भारत
+                                </p>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-icon">
+                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                    </svg>
+                                </div>
+                                <h3>फोन</h3>
+                                <p>
+                                    मुख्य कार्यालय: +91-11-1234-5678<br>
+                                    न्यूज़रूम: +91-11-1234-5679<br>
+                                    विज्ञापन: +91-11-1234-5680<br>
+                                    टोल फ्री: 1800-123-4567
+                                </p>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-icon">
+                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <h3>ईमेल</h3>
+                                <p>
+                                    सामान्य: info@bhaskarnews.com<br>
+                                    न्यूज़ टिप: news@bhaskarnews.com<br>
+                                    संपादक: editor@bhaskarnews.com<br>
+                                    विज्ञापन: ads@bhaskarnews.com
+                                </p>
+                            </div>
+
+                            <div class="contact-info-card">
+                                <div class="contact-icon">
+                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12,6 12,12 16,14"></polyline>
+                                    </svg>
+                                </div>
+                                <h3>कार्य समय</h3>
+                                <p>
+                                    सोमवार - शुक्रवार: 9:00 AM - 6:00 PM<br>
+                                    शनिवार: 10:00 AM - 4:00 PM<br>
+                                    रविवार: बंद<br>
+                                    न्यूज़रूम: 24x7 खुला
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Departments -->
+                    <section class="departments-section">
+                        <h2>विभाग</h2>
+                        <div class="departments-grid">
+                            <div class="department-card">
+                                <h3>न्यूज़ डेस्क</h3>
+                                <p>समाचार सुझाव, ब्रेकिंग न्यूज़ और तत्काल रिपोर्टिंग के लिए।</p>
+                                <div class="department-contact">
+                                    <span>📧 newsdesk@bhaskarnews.com</span>
+                                    <span>📞 +91-11-1234-5679</span>
+                                </div>
+                            </div>
+
+                            <div class="department-card">
+                                <h3>संपादकीय विभाग</h3>
+                                <p>लेख, राय और संपादकीय सामग्री के लिए।</p>
+                                <div class="department-contact">
+                                    <span>📧 editorial@bhaskarnews.com</span>
+                                    <span>📞 +91-11-1234-5681</span>
+                                </div>
+                            </div>
+
+                            <div class="department-card">
+                                <h3>तकनीकी सहायता</h3>
+                                <p>वेबसाइट, ऐप और तकनीकी समस्याओं के लिए।</p>
+                                <div class="department-contact">
+                                    <span>📧 tech@bhaskarnews.com</span>
+                                    <span>📞 +91-11-1234-5682</span>
+                                </div>
+                            </div>
+
+                            <div class="department-card">
+                                <h3>विज्ञापन विभाग</h3>
+                                <p>विज्ञापन, स्पॉन्सरशिप और मार्केटिंग के लिए।</p>
+                                <div class="department-contact">
+                                    <span>📧 marketing@bhaskarnews.com</span>
+                                    <span>📞 +91-11-1234-5683</span>
+                                </div>
+                            </div>
+
+                            <div class="department-card">
+                                <h3>मानव संसाधन</h3>
+                                <p>नौकरी, करियर और इंटर्नशिप के अवसरों के लिए।</p>
+                                <div class="department-contact">
+                                    <span>📧 hr@bhaskarnews.com</span>
+                                    <span>📞 +91-11-1234-5684</span>
+                                </div>
+                            </div>
+
+                            <div class="department-card">
+                                <h3>कानूनी विभाग</h3>
+                                <p>कानूनी मामले, कॉपीराइट और गोपनीयता के लिए।</p>
+                                <div class="department-contact">
+                                    <span>📧 legal@bhaskarnews.com</span>
+                                    <span>📞 +91-11-1234-5685</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="faq-section">
+                        <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h3>मैं अपनी न्यूज़ टिप कैसे भेज सकता हूँ?</h3>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>आप अपनी न्यूज़ टिप news@bhaskarnews.com पर भेज सकते हैं या ऊपर दिए गए संपर्क फॉर्म का उपयोग कर सकते हैं। कृपया अपनी जानकारी में सभी आवश्यक विवरण शामिल करें।</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h3>क्या आप इंटर्नशिप के अवसर प्रदान करते हैं?</h3>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>हाँ, हम नियमित रूप से पत्रकारिता, डिजिटल मार्केटिंग और तकनीकी क्षेत्रों में इंटर्नशिप के अवसर प्रदान करते हैं। कृपया hr@bhaskarnews.com पर अपना रिज्यूमे भेजें।</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h3>मैं अपनी शिकायत कैसे दर्ज करा सकता हूँ?</h3>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>आप ऊपर दिए गए संपर्क फॉर्म में 'शिकायत' विषय चुनकर अपनी शिकायत दर्ज करा सकते हैं। हमारी टीम 24 घंटे के भीतर आपसे संपर्क करेगी।</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <h3>क्या मैं अपने लेख प्रकाशित करवा सकता हूँ?</h3>
+                                    <span class="faq-toggle">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>हाँ, हम गेस्ट लेख स्वीकार करते हैं। कृपया अपना लेख editorial@bhaskarnews.com पर भेजें। हमारी संपादकीय टीम इसकी समीक्षा करके आपको सूचित करेगी।</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Quick Contact -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">त्वरित संपर्क</h3>
+                        <div class="quick-contact">
+                            <div class="quick-contact-item">
+                                <strong>न्यूज़ टिप हॉटलाइन</strong><br>
+                                <a href="tel:+911112345679">+91-11-1234-5679</a>
+                            </div>
+                            <div class="quick-contact-item">
+                                <strong>व्हाट्सऐप</strong><br>
+                                <a href="https://wa.me/911112345679">+91-11-1234-5679</a>
+                            </div>
+                            <div class="quick-contact-item">
+                                <strong>आपातकालीन</strong><br>
+                                <a href="tel:+911112345678">+91-11-1234-5678</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">सोशल मीडिया</h3>
+                        <div class="social-media-links">
+                            <a href="#" class="social-media-link facebook">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                                Facebook
+                            </a>
+                            <a href="#" class="social-media-link twitter">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                </svg>
+                                Twitter
+                            </a>
+                            <a href="#" class="social-media-link instagram">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                                Instagram
+                            </a>
+                            <a href="#" class="social-media-link youtube">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                                YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Subscribe -->
+                    <div class="sidebar-widget newsletter-widget">
+                        <h3 class="widget-title">न्यूज़लेटर</h3>
+                        <p class="newsletter-text">नवीनतम समाचार सीधे अपने ईमेल पर प्राप्त करें।</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="अपना ईमेल दर्ज करें" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-btn">सदस्यता लें</button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+     <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>भास्कर न्यूज़</h3>
+                        <p>भरोसेमंद समाचारों का स्रोत और व्यापक कवरेज के लिए आपका विश्वसनीय साथी।</p>
+                    </div>
+                   
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>त्वरित लिंक</h4>
+                        <ul>
+                            <li><a href="index.html">होम</a></li>
+                            <li><a href="politics.html">राजनीति</a></li>
+                            <li><a href="sports.html">खेल</a></li>
+                            <li><a href="cricket.html">क्रिकेट</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>श्रेणियां</h4>
+                        <ul>
+                            <li><a href="entertainment.html">मनोरंजन</a></li>
+                           <li><a href="about.html">हमारे बारे में</a></li>
+                            <li><a href="contact.html">संपर्क</a></li>
+                            <li><a href="Privacy Policy.html">गोपनीयता नीति</a></li>
+                            <li><a href="Terms.html">सेवा की शर्तें</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>हमसे जुड़ें</h4>
+                       <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+    <p>&copy; 2025 Bhaskar News. All rights reserved. | Designed by <a href="https://innovaneers.in" target="_blank" style="color: red;">Innovaneers Technologies</a></p>
+</div>
+
+        </div>
+    </footer>
+
+  <script src="Frantend/main.js"></script>
+
+  
+
+    <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en'}, // Change 'en' to your website's default language
+      'google_translate_element'
+    );
+  }
+</script>
+
+<script type="text/javascript" 
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+</body>
+</html>

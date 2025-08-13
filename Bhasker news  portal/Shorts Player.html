@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <link href="img/logo.png" rel="icon">
+  <title>शॉर्ट वीडियो</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .video-container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .video-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    video {
+      height: 80vh;
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-controls {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .nav-arrow {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .social-icons {
+      margin-left: 12px;
+      display: flex;
+      margin-top: 150px;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    .description {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.6);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media(max-width: 400px) {
+      .video-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      video {
+        width: 90vw;
+        height: 70vh;
+      }
+
+      .social-icons {
+        margin-left: 0;
+        margin-top: 10px;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      .social-icons a {
+        font-size: 18px;
+      }
+
+      .nav-controls {
+        left: 10px;
+      }
+
+      .nav-arrow {
+        font-size: 20px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="video-container">
+  <div class="back-btn" onclick="goBack()">←</div>
+
+  <!-- Arrows -->
+  <div class="nav-controls">
+    <div class="nav-arrow" onclick="navigateVideo(-1)">↑</div>
+    <div class="nav-arrow" onclick="navigateVideo(1)">↓</div>
+  </div>
+
+  <!-- Video + Social Icons side by side -->
+  <div class="video-wrapper">
+    <video id="shortVideo" autoplay muted controls playsinline></video>
+
+    <!-- Social Icons now placed right beside video -->
+ <div class="social-icons">
+  <a href="#"><i class="fab fa-facebook-f"></i></a>
+  <a href="#"><i class="fab fa-twitter"></i></a>
+  <a href="#"><i class="fab fa-instagram"></i></a>
+  <a href="#" title="Share"><i class="fas fa-share-alt"></i></a>
+</div>
+
+  </div>
+
+  <!-- Description -->
+  <div class="description" id="videoDesc">वीडियो का विवरण यहां दिखेगा।</div>
+</div>
+
+<script>
+  const videos = [
+    {
+      src: "https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg?auto=compress&cs=tinysrgb&w=300&h=500&fit=crop.mp4",
+      title: "क्रिकेट टीम की ऐतिहासिक जीत",
+      date: "21 जुलाई 2025",
+      time: "1 मिनट",
+      desc: "यह पहला शॉर्ट वीडियो है।"
+    },
+    {
+      src: "https://www.w3schools.com/html/movie.mp4",
+      title: "सरकार की नई योजना पर एक्सपर्ट की राय",
+      date: "20 जुलाई 2025",
+      time: "55 सेकंड",
+      desc: "यह दूसरा वीडियो है, जो नेविगेशन से आता है।"
+    }
+  ];
+
+  const params = new URLSearchParams(window.location.search);
+  let index = parseInt(params.get("video")) - 1 || 0;
+
+  const videoPlayer = document.getElementById("shortVideo");
+  const videoTitle = document.getElementById("videoTitle");
+  const videoMeta = document.getElementById("videoMeta");
+  const videoDesc = document.getElementById("videoDesc");
+
+  function loadVideo(i) {
+    if (i < 0 || i >= videos.length) return;
+    videoPlayer.src = videos[i].src;
+    videoTitle.textContent = videos[i].title;
+    videoMeta.textContent = `📅 ${videos[i].date} | ⏱ ${videos[i].time}`;
+    videoDesc.textContent = videos[i].desc;
+  }
+
+  function navigateVideo(direction) {
+    index += direction;
+    if (index < 0) index = 0;
+    if (index >= videos.length) index = videos.length - 1;
+    loadVideo(index);
+  }
+
+  function goBack() {
+    window.location.href = 'videos.html';
+  }
+
+  loadVideo(index);
+</script>
+
+
+
+<script src="Frantend/main.js"></script>
+
+
+
+    <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en'}, // Change 'en' to your website's default language
+      'google_translate_element'
+    );
+  }
+</script>
+
+<script type="text/javascript" 
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+</body>
+</html>

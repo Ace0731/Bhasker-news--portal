@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>मेंबरशिप डिटेल्स - Dainik Bhaskar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="Frantend/revamp.css">
+  <link href="img/logo.png" rel="icon">
+           <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .sidebar {
+      background-color: white;
+      border-right: 1px solid #ddd;
+      min-height: 100vh;
+    }
+    .sidebar a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #000;
+      border-left: 4px solid transparent;
+    }
+    .sidebar a.active {
+      font-weight: bold;
+      background-color: #f0f0f0;
+      border-left-color: red;
+    }
+    .membership-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .btn-orange {
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+
+      <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+    <img src="img/logo.webp" alt="भास्कर न्यूज़ लोगो" style="height: 50px; margin-right: 10px;">
+    <!-- <h1 style="margin: 0; font-size: 24px; color: #000;">भास्कर न्यूज़</h1> -->
+  </a>
+                    <!-- <span class="tagline">सच की आवाज़</span> -->
+                </div>
+                
+               <!-- <nav class="nav" id="nav">
+          <ul class="nav-list" id="navList">
+            <li><a href="index.html" class="nav-link ">होम</a></li>
+            <li><a href="politics.html" class="nav-link active">राजनीति</a></li>
+            <li><a href="sports.html" class="nav-link">खेल</a></li>
+            <li><a href="cricket.html" class="nav-link">क्रिकेट</a></li>
+            <li><a href="entertainment.html" class="nav-link">मनोरंजन</a></li>
+           
+              <li> <a href="epaper.html" class="nav-link">ई-पेपर</a></li> 
+        <li>  <a href="videos.html" class="nav-link">वीडियो</a></li>
+
+         <li class="dropdown">
+              <a href="#" class="nav-link">More ▾</a>
+              <div class="dropdown-content">
+                <a href="#">टॉप न्यूज़ | Top News</a>
+                <a href="#">राज्य-शहर | Local</a>
+                <a href="#">भास्कर खास | Bhaskar Khaas</a>
+                <a href="#">क्रिकेट | Cricket</a>
+                <a href="#">DB ओरिजिनल | DB Original</a>
+                <a href="#">स्पोर्ट्स | Sports</a>
+                <a href="#">बॉलीवुड | Entertainment</a>
+                <a href="#">जॉब - एजुकेशन | Jobs & Education</a>
+                <a href="#">बिजनेस | Business</a>
+                <a href="#">लाइफस्टाइल | Lifestyle</a>
+                <a href="#">जीवन मंत्र | Jeevan Mantra</a>
+                <a href="#">वुमन | Women</a>
+                <a href="#">देश | National</a>
+                <a href="#">विदेश | International</a>
+                <a href="#">राशिफल | Rashifal</a>
+                <a href="#">टेक - ऑटो | Tech - Auto</a>
+                <a href="#">फेक न्यूज एक्सपोज़ | Fake News Expose</a>
+                <a href="#">ओपिनियन | Opinion</a>
+                <a href="#">मधुरिमा | Madhurima</a>
+                <a href="#">मैगजीन | Magazine</a>
+                <a href="#">लाइफ - साइंस | Happy Life</a>
+                <a href="#">यूटिलिटी | Utility</a>
+              </div>
+            </li>
+          </ul>
+        </nav> -->
+                
+                <div class="header-actions">
+                    <!-- <div class="search-box">
+                        <input type="text" placeholder="खोजें..." class="search-input">
+                        <button class="search-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div> -->
+<div id="google_translate_element"></div>
+                    <div class="profile-dropdown">
+ <a href="#" class="profile-icon" title="My Profile">
+    <i class="bi bi-person-circle" style="font-size: 24px;"></i>
+  </a>
+  <ul class="profile-menu">
+    <li><a href="profile.html"> मेरा प्रोफाइल</a></li>
+    <li><a href="login.html"> लॉगिन</a></li>
+    <!-- <li><a href="#" onclick="toggleDarkMode()"> डार्क मोड</a></li> -->
+   <li><a href="faq.html">लॉग आउट करें</a></li>
+  </ul>
+</div>
+
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+  <div class="container-fluid " style="margin-top: 80px;">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 sidebar p-3">
+      
+        <a href="edit-profile.html" class="">मेरा प्रोफाइल</a>
+        <a href="member.html" class="active">मेंबरशिप डिटेल्स</a>
+        <a href="order.html">ऑर्डर हिस्ट्री</a>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 p-4">
+        <h4 class="mb-4" style="font-weight: bold; font-size: 20px;">मेंबरशिप डिटेल्स</h4>
+        <div class="membership-box">
+          <p class="mb-3">प्रीमियम मेंबरशिप पाएं और अनलिमिटेड ई-पेपर पढ़ें</p>
+          <button class="btn btn-orange px-4 py-2">
+            👑 पाएँ प्रीमियम मेंबरशिप
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>भास्कर न्यूज़</h3>
+                        <p>भरोसेमंद समाचारों का स्रोत और व्यापक कवरेज के लिए आपका विश्वसनीय साथी।</p>
+                    </div>
+                   
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>त्वरित लिंक</h4>
+                        <ul>
+                            <li><a href="index.html">होम</a></li>
+                            <li><a href="politics.html">राजनीति</a></li>
+                            <li><a href="sports.html">खेल</a></li>
+                            <li><a href="cricket.html">क्रिकेट</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>श्रेणियां</h4>
+                        <ul>
+                            <li><a href="entertainment.html">मनोरंजन</a></li>
+                           <li><a href="about.html">हमारे बारे में</a></li>
+                            <li><a href="contact.html">संपर्क</a></li>
+                            <li><a href="Privacy Policy.html">गोपनीयता नीति</a></li>
+                            <li><a href="Terms.html">सेवा की शर्तें</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>हमसे जुड़ें</h4>
+                       <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+    <p>&copy; 2025 Bhaskar News. All rights reserved. | Designed by <a href="https://innovaneers.in" target="_blank" style="color: red;">Innovaneers Technologies</a></p>
+</div>
+
+        </div>
+    </footer>
+
+<script src="Frantend/main.js"></script>
+
+
+
+    <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en'}, // Change 'en' to your website's default language
+      'google_translate_element'
+    );
+  }
+</script>
+
+<script type="text/javascript" 
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+</body>
+</html>
