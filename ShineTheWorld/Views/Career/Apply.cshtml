@@ -1,0 +1,356 @@
+@model ShineTheWorld.Models.CareerViewModel
+
+@{
+    ViewData["Title"] = "Apply for Position";
+    var selectedPosition = ViewBag.SelectedPosition as ShineTheWorld.Models.JobPosition;
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold mb-3">Apply for Position</h1>
+                @if (selectedPosition != null)
+                {
+                    <div class="selected-position-card">
+                        <h3 class="text-primary">@selectedPosition.Title</h3>
+                        <p class="text-muted mb-2">
+                            <i class="fas fa-building me-2"></i>@selectedPosition.Department
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-map-marker-alt me-2"></i>@selectedPosition.Location
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-clock me-2"></i>@selectedPosition.Type
+                        </p>
+                        <p class="lead">@selectedPosition.Description</p>
+                    </div>
+                }
+                else
+                {
+                    <p class="lead text-muted">Submit your application and we'll match you with suitable positions.</p>
+                }
+            </div>
+
+            <!-- Application Form -->
+            <div class="application-form-card">
+                <form asp-action="Apply" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    @Html.AntiForgeryToken()
+                    
+                    <!-- Personal Information Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-user me-2"></i>Personal Information
+                        </h4>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="Application.FullName" class="form-label">Full Name *</label>
+                                <input asp-for="Application.FullName" class="form-control" placeholder="Enter your full name" required>
+                                <span asp-validation-for="Application.FullName" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label asp-for="Application.Email" class="form-label">Email Address *</label>
+                                <input asp-for="Application.Email" type="email" class="form-control" placeholder="your.email@example.com" required>
+                                <span asp-validation-for="Application.Email" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label asp-for="Application.Phone" class="form-label">Phone Number *</label>
+                                <input asp-for="Application.Phone" type="tel" class="form-control" placeholder="+91 98765 43210" required>
+                                <span asp-validation-for="Application.Phone" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label asp-for="Application.Experience" class="form-label">Years of Experience *</label>
+                                <select asp-for="Application.Experience" class="form-select" required>
+                                    <option value="">Select experience</option>
+                                    <option value="0">Fresher (0 years)</option>
+                                    <option value="1">1 year</option>
+                                    <option value="2">2 years</option>
+                                    <option value="3">3 years</option>
+                                    <option value="4">4 years</option>
+                                    <option value="5">5 years</option>
+                                    <option value="6">6-10 years</option>
+                                    <option value="10">10+ years</option>
+                                </select>
+                                <span asp-validation-for="Application.Experience" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Position Information Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-briefcase me-2"></i>Position Details
+                        </h4>
+                        
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="Application.Position" class="form-label">Position Applied For *</label>
+                                @if (selectedPosition != null)
+                                {
+                                    <input asp-for="Application.Position" class="form-control" readonly>
+                                }
+                                else
+                                {
+                                    <select asp-for="Application.Position" class="form-select" required>
+                                        <option value="">Select a position</option>
+                                        @foreach (var position in Model.OpenPositions)
+                                        {
+                                            <option value="@position.Title">@position.Title - @position.Department</option>
+                                        }
+                                        <option value="General Application">General Application (No specific position)</option>
+                                    </select>
+                                }
+                                <span asp-validation-for="Application.Position" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resume Upload Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-file-upload me-2"></i>Resume Upload
+                        </h4>
+                        
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="resume" class="form-label">Upload Resume *</label>
+                                <div class="upload-area" id="uploadArea">
+                                    <input type="file" name="resume" id="resume" class="form-control" accept=".pdf,.doc,.docx" required>
+                                    <div class="upload-content">
+                                        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                        <h5>Drag & Drop your resume here</h5>
+                                        <p class="text-muted">or <span class="text-primary">browse files</span></p>
+                                        <small class="text-muted">Supported formats: PDF, DOC, DOCX (Max 5MB)</small>
+                                    </div>
+                                    <div class="file-info" id="fileInfo" style="display: none;">
+                                        <i class="fas fa-file-alt fa-2x text-success mb-2"></i>
+                                        <p class="mb-0" id="fileName"></p>
+                                        <small class="text-muted" id="fileSize"></small>
+                                        <button type="button" class="btn btn-sm btn-outline-danger mt-2" id="removeFile">
+                                            <i class="fas fa-times me-1"></i>Remove
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">Please upload your resume.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cover Letter Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-edit me-2"></i>Cover Letter
+                        </h4>
+                        
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="Application.CoverLetter" class="form-label">Tell us about yourself *</label>
+                                <textarea asp-for="Application.CoverLetter" class="form-control" rows="6" 
+                                          placeholder="Why are you interested in this position? What makes you a great fit for our team? Share your passion and relevant experience..." 
+                                          required></textarea>
+                                <div class="form-text">
+                                    <span id="charCount">0</span>/1000 characters
+                                </div>
+                                <span asp-validation-for="Application.CoverLetter" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information Section -->
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-info-circle me-2"></i>Additional Information
+                        </h4>
+                        
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="portfolioCheck">
+                                    <label class="form-check-label" for="portfolioCheck">
+                                        I have an online portfolio/LinkedIn profile
+                                    </label>
+                                </div>
+                                <input type="url" class="form-control mt-2" id="portfolioUrl" placeholder="https://linkedin.com/in/yourprofile" style="display: none;">
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="relocateCheck">
+                                    <label class="form-check-label" for="relocateCheck">
+                                        I am willing to relocate if required
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remoteCheck">
+                                    <label class="form-check-label" for="remoteCheck">
+                                        I am interested in remote work opportunities
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Submit -->
+                    <div class="form-section">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                    <label class="form-check-label" for="termsCheck">
+                                        I agree to the <a href="#" class="text-primary">Terms and Conditions</a> and 
+                                        <a href="#" class="text-primary">Privacy Policy</a> *
+                                    </label>
+                                    <div class="invalid-feedback">You must agree to the terms and conditions.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="@Url.Action("Index")" class="btn btn-outline-secondary btn-lg me-md-2">
+                                        <i class="fas fa-arrow-left me-2"></i>Back to Careers
+                                    </a>
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Submit Application
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Form validation
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('resume');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const removeFileBtn = document.getElementById('removeFile');
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('drag-over');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        // Handle file selection
+        function handleFile(file) {
+            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            const maxSize = 5 * 1024 * 1024; // 5MB
+
+            if (!allowedTypes.includes(file.type)) {
+                alert('Please upload a PDF, DOC, or DOCX file.');
+                return;
+            }
+
+            if (file.size > maxSize) {
+                alert('File size cannot exceed 5MB.');
+                return;
+            }
+
+            // Show file info
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            fileInfo.style.display = 'block';
+            uploadArea.querySelector('.upload-content').style.display = 'none';
+            uploadArea.classList.add('file-selected');
+        }
+
+        // Remove file
+        removeFileBtn.addEventListener('click', () => {
+            fileInput.value = '';
+            fileInfo.style.display = 'none';
+            uploadArea.querySelector('.upload-content').style.display = 'block';
+            uploadArea.classList.remove('file-selected');
+        });
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Character count for cover letter
+        const coverLetterTextarea = document.querySelector('textarea[name="Application.CoverLetter"]');
+        const charCount = document.getElementById('charCount');
+
+        coverLetterTextarea.addEventListener('input', () => {
+            const count = coverLetterTextarea.value.length;
+            charCount.textContent = count;
+            
+            if (count > 1000) {
+                charCount.classList.add('text-danger');
+                coverLetterTextarea.classList.add('is-invalid');
+            } else {
+                charCount.classList.remove('text-danger');
+                coverLetterTextarea.classList.remove('is-invalid');
+            }
+        });
+
+        // Portfolio URL toggle
+        const portfolioCheck = document.getElementById('portfolioCheck');
+        const portfolioUrl = document.getElementById('portfolioUrl');
+
+        portfolioCheck.addEventListener('change', () => {
+            if (portfolioCheck.checked) {
+                portfolioUrl.style.display = 'block';
+                portfolioUrl.required = true;
+            } else {
+                portfolioUrl.style.display = 'none';
+                portfolioUrl.required = false;
+                portfolioUrl.value = '';
+            }
+        });
+    </script>
+}

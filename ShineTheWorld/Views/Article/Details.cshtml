@@ -1,0 +1,182 @@
+@model ShineTheWorld.Models.ArticleViewModel
+@{
+    ViewData["Title"] = Model.Article.Title;
+    bool locked = Model.Article.IsPremium && !Model.IsSubscribed;
+}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Article Header -->
+            <div class="article-header mb-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/?category=@Model.Article.Category">@Model.Article.Category</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Article</li>
+                    </ol>
+                </nav>
+                
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="badge bg-primary">@Model.Article.Category</span>
+                    @if (Model.Article.IsPremium)
+                    {
+                        <span class="badge bg-warning text-dark">
+                            <i class="fas fa-crown me-1"></i>Premium
+                        </span>
+                    }
+                </div>
+                
+                <h1 class="display-5 fw-bold mb-3" style="font-family:'Playfair Display', serif; line-height: 1.2;">
+                    @Model.Article.Title
+                </h1>
+                
+                <div class="article-meta d-flex align-items-center gap-3 text-muted mb-4">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-user-circle me-2"></i>
+                        <span>@Model.Article.Author</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-calendar me-2"></i>
+                        <span>@Model.Article.PublishedDate.ToLocalTime().ToString("MMMM dd, yyyy")</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-clock me-2"></i>
+                        <span>@Model.Article.ReadTimeMinutes min read</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article Image -->
+            <div class="article-image mb-4">
+                <img src="@Model.Article.ImageUrl" class="img-fluid rounded shadow" alt="@Model.Article.Title" style="width: 100%; height: 400px; object-fit: cover;" />
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content position-relative">
+                @if (!locked)
+                {
+                    <div class="content-text" style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                        @foreach (var paragraph in Model.Article.Content.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <p class="mb-4">@paragraph</p>
+                        }
+                    </div>
+                    
+                    <!-- Social Share -->
+                    <div class="social-share mt-5 pt-4 border-top">
+                        <h6 class="mb-3">Share this article:</h6>
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-facebook-f me-1"></i>Facebook
+                            </a>
+                            <a href="#" class="btn btn-outline-info btn-sm">
+                                <i class="fab fa-twitter me-1"></i>Twitter
+                            </a>
+                            <a href="#" class="btn btn-outline-success btn-sm">
+                                <i class="fab fa-whatsapp me-1"></i>WhatsApp
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-link me-1"></i>Copy Link
+                            </a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <!-- Preview Content -->
+                    <div class="content-text" style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                        @foreach (var paragraph in Model.PreviewText.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <p class="mb-4">@paragraph</p>
+                        }
+                    </div>
+                    
+                    <!-- Paywall Overlay -->
+                    <div class="paywall-overlay position-relative">
+                        <div class="paywall-gradient"></div>
+                        <div class="paywall-content text-center p-5 bg-white rounded shadow-lg border">
+                            <div class="mb-4">
+                                <i class="fas fa-crown fa-3x text-warning mb-3"></i>
+                                <h3 class="fw-bold mb-3">Premium Content</h3>
+                                <p class="lead text-muted mb-4">
+                                    This is a premium article. Subscribe to Shine The World to read the full story and get unlimited access to all our premium content.
+                                </p>
+                            </div>
+                            
+                            <div class="subscription-benefits mb-4">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <div class="benefit-item">
+                                            <i class="fas fa-newspaper text-primary mb-2"></i>
+                                            <small class="d-block">Unlimited Articles</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="benefit-item">
+                                            <i class="fas fa-ad-free text-success mb-2"></i>
+                                            <small class="d-block">Ad-Free Experience</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="benefit-item">
+                                            <i class="fas fa-mobile-alt text-info mb-2"></i>
+                                            <small class="d-block">Mobile Access</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    <a href="/Subscription/Plans" class="btn btn-primary btn-lg px-4">
+                                        <i class="fas fa-crown me-2"></i>Choose Your Plan
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Account/Register" class="btn btn-primary btn-lg px-4 me-md-2">
+                                        <i class="fas fa-user-plus me-2"></i>Subscribe Now
+                                    </a>
+                                    <a href="/Account/Login" class="btn btn-outline-primary btn-lg px-4">
+                                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.paywall-gradient {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,1) 100%);
+    pointer-events: none;
+}
+
+.benefit-item {
+    text-align: center;
+}
+
+.benefit-item i {
+    font-size: 1.5rem;
+    display: block;
+}
+
+.article-meta {
+    font-size: 0.9rem;
+}
+
+.social-share .btn {
+    border-radius: 20px;
+}
+</style>

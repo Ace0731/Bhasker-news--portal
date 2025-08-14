@@ -1,0 +1,279 @@
+@model ShineTheWorld.Models.JobPosition
+
+@{
+    ViewData["Title"] = Model.Title + " - Career Opportunity";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Position Header -->
+            <div class="position-header mb-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index")">Careers</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+                    </ol>
+                </nav>
+                
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="badge bg-primary fs-6">@Model.Department</span>
+                    <span class="badge bg-secondary fs-6">@Model.Type</span>
+                    <span class="text-muted">
+                        <i class="fas fa-map-marker-alt me-1"></i>@Model.Location
+                    </span>
+                </div>
+                
+                <h1 class="display-5 fw-bold mb-3">@Model.Title</h1>
+                
+                <div class="position-meta d-flex align-items-center gap-4 text-muted mb-4">
+                    <div>
+                        <i class="fas fa-calendar me-2"></i>
+                        Posted @Model.PostedDate.ToString("MMMM dd, yyyy")
+                    </div>
+                    <div>
+                        <i class="fas fa-money-bill-wave me-2"></i>
+                        <strong class="text-success">@Model.SalaryRange</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Position Description -->
+            <div class="position-content">
+                <section class="mb-5">
+                    <h3 class="mb-3">About This Role</h3>
+                    <p class="lead">@Model.Description</p>
+                </section>
+
+                <!-- Requirements -->
+                <section class="mb-5">
+                    <h3 class="mb-3">What We're Looking For</h3>
+                    <ul class="requirements-list">
+                        @foreach (var requirement in Model.Requirements)
+                        {
+                            <li class="mb-2">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                @requirement
+                            </li>
+                        }
+                    </ul>
+                </section>
+
+                <!-- What We Offer -->
+                <section class="mb-5">
+                    <h3 class="mb-3">What We Offer</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="benefit-item">
+                                <i class="fas fa-heartbeat text-danger me-2"></i>
+                                <strong>Health & Wellness</strong>
+                                <p class="mb-0 text-muted">Comprehensive health insurance and wellness programs</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="benefit-item">
+                                <i class="fas fa-laptop text-primary me-2"></i>
+                                <strong>Remote Flexibility</strong>
+                                <p class="mb-0 text-muted">Hybrid work options and modern equipment</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="benefit-item">
+                                <i class="fas fa-graduation-cap text-warning me-2"></i>
+                                <strong>Learning & Development</strong>
+                                <p class="mb-0 text-muted">Professional growth opportunities and training</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="benefit-item">
+                                <i class="fas fa-users text-info me-2"></i>
+                                <strong>Great Team Culture</strong>
+                                <p class="mb-0 text-muted">Collaborative environment with talented colleagues</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Application Process -->
+                <section class="mb-5">
+                    <h3 class="mb-3">Application Process</h3>
+                    <div class="process-steps">
+                        <div class="row g-4">
+                            <div class="col-md-3">
+                                <div class="process-step text-center">
+                                    <div class="step-icon">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </div>
+                                    <h6>Apply Online</h6>
+                                    <p class="small text-muted">Submit your application with resume and cover letter</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="process-step text-center">
+                                    <div class="step-icon">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <h6>Initial Review</h6>
+                                    <p class="small text-muted">Our team reviews your application (2-3 days)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="process-step text-center">
+                                    <div class="step-icon">
+                                        <i class="fas fa-video"></i>
+                                    </div>
+                                    <h6>Interview</h6>
+                                    <p class="small text-muted">Phone/video screening and final interview</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="process-step text-center">
+                                    <div class="step-icon">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                    <h6>Decision</h6>
+                                    <p class="small text-muted">We'll get back to you within a week</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="position-sidebar">
+                <!-- Apply Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-3">Ready to Apply?</h5>
+                        <p class="card-text text-muted mb-4">
+                            Join our team and help us shape the future of journalism.
+                        </p>
+                        <a href="@Url.Action("Apply", new { positionId = Model.Id })" 
+                           class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="fas fa-paper-plane me-2"></i>Apply for This Position
+                        </a>
+                        <div class="d-grid gap-2">
+                            <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to All Jobs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Details -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h6 class="mb-0">Job Details</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="job-detail-item">
+                            <strong>Department:</strong>
+                            <span class="text-muted">@Model.Department</span>
+                        </div>
+                        <div class="job-detail-item">
+                            <strong>Location:</strong>
+                            <span class="text-muted">@Model.Location</span>
+                        </div>
+                        <div class="job-detail-item">
+                            <strong>Employment Type:</strong>
+                            <span class="text-muted">@Model.Type</span>
+                        </div>
+                        <div class="job-detail-item">
+                            <strong>Salary Range:</strong>
+                            <span class="text-success fw-bold">@Model.SalaryRange</span>
+                        </div>
+                        <div class="job-detail-item">
+                            <strong>Posted:</strong>
+                            <span class="text-muted">@Model.PostedDate.ToString("MMM dd, yyyy")</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Share Position -->
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h6 class="mb-0">Share This Position</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-linkedin me-2"></i>Share on LinkedIn
+                            </a>
+                            <a href="#" class="btn btn-outline-info btn-sm">
+                                <i class="fab fa-twitter me-2"></i>Share on Twitter
+                            </a>
+                            <a href="#" class="btn btn-outline-success btn-sm">
+                                <i class="fab fa-whatsapp me-2"></i>Share on WhatsApp
+                            </a>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="copyToClipboard()">
+                                <i class="fas fa-link me-2"></i>Copy Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.benefit-item {
+    padding: 1rem;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-bottom: 1rem;
+}
+
+.process-step {
+    padding: 1rem;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+}
+
+.job-detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.job-detail-item:last-child {
+    border-bottom: none;
+}
+
+.requirements-list li {
+    padding: 0.5rem 0;
+}
+
+@@media (max-width: 768px) {
+    .position-sidebar {
+        margin-top: 2rem;
+    }
+}
+</style>
+
+@section Scripts {
+    <script>
+        function copyToClipboard() {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+}

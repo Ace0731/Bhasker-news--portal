@@ -1,0 +1,445 @@
+@model ShineTheWorld.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Create Account - Shine The World";
+    Layout = "_Layout";
+}
+
+<div class="auth-container">
+    <div class="container-fluid">
+        <div class="row min-vh-100">
+            <!-- Left Side - Registration Form -->
+            <div class="col-lg-6 d-flex align-items-center order-lg-1 order-2">
+                <div class="auth-form-container w-100">
+                    <div class="auth-form-wrapper">
+                        <!-- Mobile Brand -->
+                        <div class="d-lg-none text-center mb-4">
+                            <h2 class="fw-bold text-primary mb-2">
+                                Shine <span class="text-warning">The World</span>
+                            </h2>
+                            <p class="text-muted">Truth. Trust. Transparency.</p>
+                        </div>
+                        
+                        <!-- Form Header -->
+                        <div class="auth-header text-center mb-4">
+                            <h3 class="fw-bold mb-2">Join Our Community</h3>
+                            <p class="text-muted">Create your account and start your journey with quality journalism</p>
+                        </div>
+                        
+                        <!-- Error Messages -->
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                @ViewBag.Error
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        }
+                        
+                        <!-- Registration Form -->
+                        <form method="post" class="auth-form">
+                            @Html.AntiForgeryToken()
+                            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                            
+                            <div class="form-floating mb-3">
+                                <input asp-for="Email" type="email" class="form-control form-control-lg" id="email" placeholder="name@example.com" required>
+                                <label for="email">
+                                    <i class="fas fa-envelope me-2"></i>Email Address
+                                </label>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <div class="form-text">
+                                    <i class="fas fa-info-circle me-1"></i>We'll never share your email with anyone else.
+                                </div>
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                                <input asp-for="Password" type="password" class="form-control form-control-lg" id="password" placeholder="Password" required>
+                                <label for="password">
+                                    <i class="fas fa-lock me-2"></i>Password
+                                </label>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <div class="password-strength mt-2">
+                                    <div class="strength-meter">
+                                        <div class="strength-meter-fill" id="strengthMeter"></div>
+                                    </div>
+                                    <small class="text-muted" id="strengthText">Password strength</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-floating mb-4">
+                                <input asp-for="ConfirmPassword" type="password" class="form-control form-control-lg" id="confirmPassword" placeholder="Confirm Password" required>
+                                <label for="confirmPassword">
+                                    <i class="fas fa-lock me-2"></i>Confirm Password
+                                </label>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            
+                            <!-- Terms and Conditions -->
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                <label class="form-check-label text-muted" for="agreeTerms">
+                                    I agree to the <a href="#" class="text-decoration-none">Terms of Service</a> and 
+                                    <a href="#" class="text-decoration-none">Privacy Policy</a>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                                <i class="fas fa-user-plus me-2"></i>Create Account
+                            </button>
+                        </form>
+                        
+                        <!-- Social Registration -->
+                        <div class="social-login mb-4">
+                            <div class="divider mb-3">
+                                <span class="divider-text">Or sign up with</span>
+                            </div>
+                            
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <button class="btn btn-outline-secondary w-100">
+                                        <i class="fab fa-google me-2"></i>Google
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-outline-secondary w-100">
+                                        <i class="fab fa-facebook-f me-2"></i>Facebook
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Login Link -->
+                        <div class="text-center">
+                            <p class="text-muted mb-0">
+                                Already have an account? 
+                                <a href="/Account/Login" class="text-decoration-none fw-semibold">Sign in here</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Benefits -->
+            <div class="col-lg-6 d-none d-lg-flex auth-brand-side order-lg-2 order-1">
+                <div class="auth-brand-content">
+                    <div class="brand-logo mb-4">
+                        <h1 class="display-4 fw-bold text-white mb-2">
+                            Shine <span class="text-warning">The World</span>
+                        </h1>
+                        <p class="lead text-white-50">Join thousands of readers who trust us for quality journalism</p>
+                    </div>
+                    
+                    <div class="subscription-benefits">
+                        <h4 class="text-white mb-4">What you'll get:</h4>
+                        
+                        <div class="benefit-item mb-4">
+                            <div class="benefit-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h5 class="text-white mb-2">Premium Content Access</h5>
+                                <p class="text-white-50 mb-0">Unlock exclusive articles, investigative reports, and in-depth analysis.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item mb-4">
+                            <div class="benefit-icon">
+                                <i class="fas fa-ad"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h5 class="text-white mb-2">Ad-Free Experience</h5>
+                                <p class="text-white-50 mb-0">Enjoy uninterrupted reading with our clean, ad-free interface.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item mb-4">
+                            <div class="benefit-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h5 class="text-white mb-2">Exclusive Newsletters</h5>
+                                <p class="text-white-50 mb-0">Get curated news summaries and insider insights delivered to your inbox.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h5 class="text-white mb-2">Community Access</h5>
+                                <p class="text-white-50 mb-0">Join discussions with fellow readers and participate in exclusive events.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial mt-5 p-4 bg-white bg-opacity-10 rounded-3">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face" 
+                                 class="rounded-circle me-3" width="50" height="50" alt="User">
+                            <div>
+                                <h6 class="text-white mb-0">Sarah Johnson</h6>
+                                <small class="text-white-50">Premium Subscriber</small>
+                            </div>
+                        </div>
+                        <p class="text-white-50 mb-0 fst-italic">
+                            "The quality of journalism here is exceptional. I've learned so much from their investigative pieces."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.auth-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.auth-brand-side {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.auth-brand-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.benefit-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.benefit-icon i {
+    font-size: 1.25rem;
+    color: #ffc107;
+}
+
+.auth-form-container {
+    padding: 2rem;
+    background: white;
+}
+
+.auth-form-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-floating > .form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding-left: 3rem;
+    transition: all 0.3s ease;
+}
+
+.form-floating > .form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-floating > label {
+    padding-left: 3rem;
+    color: #6c757d;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-outline-secondary {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    color: #6c757d;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background: #f8f9fa;
+    border-color: #dee2e6;
+    transform: translateY(-1px);
+}
+
+.divider {
+    position: relative;
+    text-align: center;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e9ecef;
+}
+
+.divider-text {
+    background: white;
+    padding: 0 1rem;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.alert {
+    border-radius: 12px;
+    border: none;
+}
+
+.form-check-input:checked {
+    background-color: #667eea;
+    border-color: #667eea;
+}
+
+.password-strength {
+    margin-top: 0.5rem;
+}
+
+.strength-meter {
+    height: 4px;
+    background: #e9ecef;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.25rem;
+}
+
+.strength-meter-fill {
+    height: 100%;
+    width: 0%;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.strength-weak { background: #dc3545; }
+.strength-fair { background: #fd7e14; }
+.strength-good { background: #ffc107; }
+.strength-strong { background: #28a745; }
+
+@@media (max-width: 991.98px) {
+    .auth-form-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .auth-container {
+        background: white;
+    }
+}
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        // Password strength checker
+        const passwordInput = document.getElementById('password');
+        const strengthMeter = document.getElementById('strengthMeter');
+        const strengthText = document.getElementById('strengthText');
+        
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            const strength = checkPasswordStrength(password);
+            
+            strengthMeter.style.width = strength.percentage + '%';
+            strengthMeter.className = 'strength-meter-fill ' + strength.class;
+            strengthText.textContent = strength.text;
+        });
+        
+        function checkPasswordStrength(password) {
+            let score = 0;
+            
+            if (password.length >= 8) score++;
+            if (password.match(/[a-z]/)) score++;
+            if (password.match(/[A-Z]/)) score++;
+            if (password.match(/[0-9]/)) score++;
+            if (password.match(/[^a-zA-Z0-9]/)) score++;
+            
+            switch (score) {
+                case 0:
+                case 1:
+                    return { percentage: 25, class: 'strength-weak', text: 'Weak password' };
+                case 2:
+                    return { percentage: 50, class: 'strength-fair', text: 'Fair password' };
+                case 3:
+                case 4:
+                    return { percentage: 75, class: 'strength-good', text: 'Good password' };
+                case 5:
+                    return { percentage: 100, class: 'strength-strong', text: 'Strong password' };
+                default:
+                    return { percentage: 0, class: '', text: 'Password strength' };
+            }
+        }
+        
+        // Confirm password validation
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        
+        confirmPasswordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            const confirmPassword = this.value;
+            
+            if (confirmPassword && password !== confirmPassword) {
+                this.setCustomValidity('Passwords do not match');
+                this.classList.add('is-invalid');
+            } else {
+                this.setCustomValidity('');
+                this.classList.remove('is-invalid');
+            }
+        });
+        
+        // Add floating label animation
+        document.querySelectorAll('.form-floating input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+        
+        // Auto-dismiss alerts
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    </script>
+}
